@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +12,22 @@ public class GameManager : MonoBehaviour
     private int selectedIndex = 0;
     public Vector3 pushForce;
     public TMP_Text timerText;
+    public TMP_Text scoreText;
+    public int score;
+    public static GameManager instance;
     float time = 0f;
+    public GameObject gameOverUI;
+
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void GameOver()
+    {
+        Time.timeScale = 0f;           // Останавливаем время
+        gameOverUI.SetActive(true);    // Включаем UI
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +36,16 @@ public class GameManager : MonoBehaviour
         right = InputSystem.actions.FindAction("NextZombie");
         jump = InputSystem.actions.FindAction("Jump");
     }
+    private void Awake()
+    {
+        instance = this;
+    }
 
+    public void AddScore(int points)
+    {
+        score += points;
+        scoreText.text = "Score: " + score;
+    }
     void SelectZombie(int index) 
     {
         if (selectedZombie != null)
@@ -61,4 +86,5 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
         timerText.text = "Time: " + time.ToString("F1") + " S";
     }
+   
 }
