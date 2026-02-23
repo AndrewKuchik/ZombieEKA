@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AdaptivePerformance;
+
 
 public class DeathZone : MonoBehaviour
 {
