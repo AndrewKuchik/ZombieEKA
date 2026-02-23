@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectibles
   speed: 200
+  collectSound: {fileID: 8300000, guid: e36efc3aac819ce44a37a86da5b766f5, type: 3}
+  points: 1
 --- !u!65 &551884995758140367
 BoxCollider:
   m_ObjectHideFlags: 0

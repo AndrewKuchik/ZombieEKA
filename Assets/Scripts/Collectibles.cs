@@ -5,7 +5,7 @@ public class Collectibles : MonoBehaviour
 {
    public float speed = 100f;
  
-   
+   public AudioClip collectSound;
    public int points = 1;
    private void Update()
    {
@@ -15,8 +15,11 @@ public class Collectibles : MonoBehaviour
    void OnTriggerEnter(Collider other)
    {
       if (other.CompareTag("Zombie")) ;
-      GameManager.instance.AddScore(points);
-      Destroy(gameObject);
+      {
+         SoundManager.instance.PlaySound(collectSound, transform.position);
+         GameManager.instance.AddScore(points);
+         Destroy(gameObject);
+      }
    }
 
 }
